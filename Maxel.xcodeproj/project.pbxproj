@@ -20,7 +20,6 @@
 		835DCD93139D6B75001C0245 /* AxelBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DCD85139D6B75001C0245 /* AxelBridge.m */; };
 		835DCD94139D6B75001C0245 /* MaxelAppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = 835DCD86139D6B75001C0245 /* MaxelAppDelegate.rb */; };
 		835DCD95139D6B75001C0245 /* MaxelController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 835DCD87139D6B75001C0245 /* MaxelController.rb */; };
-		835DCD96139D6B75001C0245 /* MaxelDownloader.rb in Resources */ = {isa = PBXBuildFile; fileRef = 835DCD88139D6B75001C0245 /* MaxelDownloader.rb */; };
 		83A2C36D13960046008CAA21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A2C36C13960046008CAA21 /* Cocoa.framework */; };
 		83A2C36F13960046008CAA21 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A2C36E13960046008CAA21 /* MacRuby.framework */; };
 		83A2C37913960046008CAA21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2C37813960046008CAA21 /* main.m */; };
@@ -28,6 +27,7 @@
 		83A2C38013960047008CAA21 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 83A2C37F13960047008CAA21 /* rb_main.rb */; };
 		83BAC2E5139EF1C900D03809 /* utility.rb in Resources */ = {isa = PBXBuildFile; fileRef = 83BAC2E4139EF1C900D03809 /* utility.rb */; };
 		83BAC2E8139EF53400D03809 /* Maxel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83BAC2E7139EF53400D03809 /* Maxel.icns */; };
+		83C0F98713A349F200C9A54F /* meta4.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83C0F98613A349F200C9A54F /* meta4.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,6 @@
 		835DCD85139D6B75001C0245 /* AxelBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxelBridge.m; sourceTree = "<group>"; };
 		835DCD86139D6B75001C0245 /* MaxelAppDelegate.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MaxelAppDelegate.rb; sourceTree = "<group>"; };
 		835DCD87139D6B75001C0245 /* MaxelController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MaxelController.rb; sourceTree = "<group>"; };
-		835DCD88139D6B75001C0245 /* MaxelDownloader.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MaxelDownloader.rb; sourceTree = "<group>"; };
 		83A2C36813960046008CAA21 /* Maxel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maxel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A2C36C13960046008CAA21 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		83A2C36E13960046008CAA21 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = System/Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
@@ -64,6 +63,7 @@
 		83A2C37F13960047008CAA21 /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		83BAC2E4139EF1C900D03809 /* utility.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = utility.rb; sourceTree = "<group>"; };
 		83BAC2E7139EF53400D03809 /* Maxel.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Maxel.icns; sourceTree = "<group>"; };
+		83C0F98613A349F200C9A54F /* meta4.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = meta4.icns; path = ../Graphics/meta4.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,6 @@
 				835DCD85139D6B75001C0245 /* AxelBridge.m */,
 				835DCD86139D6B75001C0245 /* MaxelAppDelegate.rb */,
 				835DCD87139D6B75001C0245 /* MaxelController.rb */,
-				835DCD88139D6B75001C0245 /* MaxelDownloader.rb */,
 				83BAC2E4139EF1C900D03809 /* utility.rb */,
 			);
 			path = Classes;
@@ -158,6 +157,7 @@
 		83A2C37213960046008CAA21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83C0F98613A349F200C9A54F /* meta4.icns */,
 				83BAC2E7139EF53400D03809 /* Maxel.icns */,
 				83A2C37313960046008CAA21 /* Maxel-Info.plist */,
 				83A2C37713960046008CAA21 /* Maxel-Prefix.pch */,
@@ -256,9 +256,9 @@
 				835DCD8E139D6B75001C0245 /* CREDITS in Resources */,
 				835DCD94139D6B75001C0245 /* MaxelAppDelegate.rb in Resources */,
 				835DCD95139D6B75001C0245 /* MaxelController.rb in Resources */,
-				835DCD96139D6B75001C0245 /* MaxelDownloader.rb in Resources */,
 				83BAC2E5139EF1C900D03809 /* utility.rb in Resources */,
 				83BAC2E8139EF53400D03809 /* Maxel.icns in Resources */,
+				83C0F98713A349F200C9A54F /* meta4.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
