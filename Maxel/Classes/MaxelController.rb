@@ -16,67 +16,38 @@
 require 'pathname'
 
 class MaxelController
-    attr_accessor :window, :downloadURL, :inputTextField, :maxConnections, :targetDirectory, :progressBar, :loggingTextField
-    
+    attr_accessor :window, :downloadURL, :inputTextField, :maxConnections, :targetDirectory, :progressBar, :loggingTextField, :downloadButton
+        
     attr_accessor :done, :size, :speed, :name
-        
-    def help(sender)
-        self.log("Maxel version 0.2\nEnter the url of a file and click download. Increasing the connections will usually increase the download speed.\n\nYou can get the command line version of Axel at http://axel.alioth.debian.org/\n\n")
-    end
-    def startDownload(sender)
-        #Check for presence
-        if(@downloadURL.stringValue == '')
-            self.log('Enter a URL to download.')
-            return
-        end
-        
-        puts ("axel -n #{@maxConnections.stringValue} #{@downloadURL.stringValue}")
-        
-        set_download_path
-
-        gcd = Dispatch::Queue.new('com.unregistered.maxel')
-        gcd.async do
-            a = AxelBridge.new
-            a.url = @downloadURL.stringValue
-            a.connections = @maxConnections.stringValue
-
-            
-            puts "Starting"
-            a.start 
-            
-            Dispatch::Queue.main.sync do
-                @name.setStringValue Pathname.new(@downloadURL.stringValue.stringByReplacingPercentEscapesUsingEncoding 4).basename
-                @size.setStringValue human_readable_size(a.size)
-            end
-            
-            until a.ready != 0
-                a.run
-                Dispatch::Queue.main.sync do
-                    @progressBar.setDoubleValue 100*a.bytes_done/a.size
-                    @done.setStringValue human_readable_size(a.bytes_done)
-                    @speed.setStringValue "#{human_readable_size(a.bytes_per_second)}/s"
-                end
-            end
-            a.close
-            puts "Complete"
-        end
-    end
     
+    attr_accessor :window, :mainWindow
+            
+    def help(sender)
+        log("Maxel version 1.2\nEnter the url of a file and click download. Increasing the connections will usually increase the download speed.\n\nYou can get the command line version of Axel at http://axel.alioth.debian.org/\n\n")
+    end
+        
     def multiDownload sender
         downloads = @inputTextField.string.split("\n")
         
+        if downloads.empty?
+            log 'Enter URLs to download, one per line'
+            return
+        end
+        
+        @downloadButton.setEnabled false
+
+        
         set_download_path
 
         gcd = Dispatch::Queue.new('com.unregistered.maxel')
-        downloads.each do |url|
+        downloads.each_with_index do |url, index|
             gcd.async do
-                log "Doing something"
                 a = AxelBridge.new
                 a.url = url
                 a.connections = @maxConnections.stringValue
                 
                 
-                log "Starting #{url}"
+                log "Starting #{url}", true
                 a.start 
                 Dispatch::Queue.main.sync do
                     @name.setStringValue Pathname.new(url.stringByReplacingPercentEscapesUsingEncoding 4).basename
@@ -92,14 +63,56 @@ class MaxelController
                     end
                 end
                 a.close
-                log "Finished."
+                log "Finished.", true
+                
+                if index == downloads.length - 1
+                    Dispatch::Queue.main.sync do
+                        log "Downloads Complete"
+                        NSSound.soundNamed('Glass').play
+                        @name.setStringValue "Idle"
+                        @speed.setStringValue "---"
+                        @downloadButton.setEnabled true
+                        @targetDirectory.setStringValue('~/Downloads'.stringByExpandingTildeInPath)
+                    end
+                end
             end
         end
         
     end
     
+    # Deal with opened files
+    def application sender, openFile: filename
+        open_metalink filename
+        return true
+    end
+    def open_metalink filename
+        # Show the window if it's closed
+        window.makeKeyAndOrderFront self
+
+        log "Opening metalink #{filename}"
+        require 'rexml/document'
+        file = Pathname.new(filename)
+        m4 = REXML::Document.new file.read
+        
+        m4.elements.each('metalink/file/url') do |e|
+            @inputTextField.setString e.text+"\n"+@inputTextField.string
+        end
+        
+        # Guess the first directory name
+        f = Pathname.new m4.elements.to_a('metalink/file').first.attributes['name']
+        if f.parent != Pathname.new('.')
+            @targetDirectory.setStringValue (Pathname.new(@targetDirectory.stringValue) + f.parent.to_s).to_s
+        end
+    end
+    
+    # Come back from closed
+    def applicationShouldHandleReopen aNotification, hasVisibleWindows: flag
+        window.makeKeyAndOrderFront self
+        return true
+    end
+    
     def awakeFromNib
-        #@loggingTextField.setEditable(false)
+        @loggingTextField.setEditable(false).setString "Welcome to Maxel. Enter URLs in the text field to the left, one per line."
         @targetDirectory.setStringValue('~/Downloads'.stringByExpandingTildeInPath)
         @progressBar.setIndeterminate false
     end
@@ -109,9 +122,13 @@ class MaxelController
         NSFileManager.defaultManager.changeCurrentDirectoryPath(@targetDirectory.stringValue.stringByExpandingTildeInPath.stringByStandardizingPath)
     end
     
-    def log(string)
-        Dispatch::Queue.main.sync do
-            @loggingTextField.setString(string + "\n" + @loggingTextField.string)
+    def log(string, async=false)
+        if async
+            Dispatch::Queue.main.sync do
+                @loggingTextField.setString(string + "\n\n" + @loggingTextField.string)
+            end
+        else
+            @loggingTextField.setString string + "\n\n" + @loggingTextField.string
         end
     end
 end

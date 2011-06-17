@@ -13,8 +13,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details
 
+
 class MaxelAppDelegate
     attr_accessor :window, :mainWindow
+    
+    def initialize
+        NSApp.setDelegate self
+    end
+    
     def applicationDidFinishLaunching(aNotification)
         puts "Launched"
     end
@@ -24,6 +30,7 @@ class MaxelAppDelegate
     def applicationShouldTerminateAfterLastWindowClosed(window)
         return true
     end
+    
     #def applicationShouldHandleReopen(application, flag)
     #  puts "Awaken"
     #  mainWindow.orderFront(self)
