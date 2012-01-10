@@ -1,3 +1,16 @@
+# Maxel 2
+Maxel will be replaced with Maxel2, a native Cocoa app. It will be distributed on the App Store after an open Beta.
+![Maxel2](http://f.cl.ly/items/1M0X2P0a3D3y1z1L1i2d/Screen%20Shot%202012-01-10%20at%203.47.52%20PM.png)
+
+Maxel 2 addresses issues with Maxel 1, such as:
+
+* The ability to pause downloads
+* Lower CPU usage
+* View multiple downloads
+* Better UI
+* Smaller binary
+
+# Maxel (unmaintained)
 Maxel is a download accelerator for Mac OS X based off the open source Axel.  It's still very much a work in progress.
 
 ![Screenshot](http://f.cl.ly/items/0b0n421R0n3U47263t2y/Screen%20shot%202011-06-17%20at%2012.16.14%20AM.png)
