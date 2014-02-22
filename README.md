@@ -1,5 +1,5 @@
 # Maxel
-![img](http://unregistered.github.io/Maxel/images/icon.png)
+![img](http://i.imgur.com/i81ov2l.png?1)
 
 Maxel is a native download accelerator for Mac OS X. It speeds downloads by segmenting the file into parts and concurrently downloading the parts.
 
