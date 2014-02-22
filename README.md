@@ -1,17 +1,11 @@
-Maxel is a download accelerator for Mac OS X based off the open source Axel.  It's still very much a work in progress.
+# Maxel
+Maxel is a native download accelerator for Mac OS X. It speeds downloads by segmenting the file into parts and concurrently downloading the parts.
 
-![Screenshot](http://f.cl.ly/items/0b0n421R0n3U47263t2y/Screen%20shot%202011-06-17%20at%2012.16.14%20AM.png)
+Maxel is in beta right now, and the latest build can be found here: http://unregistered.github.io/Maxel/
 
-#Features
-Maxel downloads files with many connections, allowing you to saturate your bandwidth. It supports multiple files and will open Metalink 4 files.
+# Feature requests, bug reporting
+Open an issue for features you'd like to see, or any bugs you encounter, and I'll take care of em.
 
-#Requirements
-I've only tested this on Mac OS 10.6.
+Or you can tweet it to @maxelapp and I'll open the issue.
 
-#Usage
-Enter the urls, number of connections, and download destination.  Download.
-
-#TODO: 
- * Create user preferences to remember preferred download location
- * Make a table cell view and a pause button?
- * Better meta4 integration
+Thanks for checking Maxel out!
