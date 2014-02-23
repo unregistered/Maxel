@@ -9,14 +9,41 @@ body {
     color: white;
 }
 
+.jumbotron h1 {
+    font-weight: normal;
+}
+
+#icon {
+    width: 100%;
+    max-width: 300px;
+}
+
 h1 {
-    font-size: 60px;
+    font-size: 50px;
+    font-weight: 300;
 }
 
-#features .aux {
-    padding-top: 60px;
+.section .lead {
+    font-size: 24px;
 }
 
-#features h4 {
+.section h4 {
     padding-top: 20px;
+}
+
+.section h2 {
+    font-size: 24px;
+}
+
+.section p {
+    font-size: 18px;
+}
+
+.portraits {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.portraits img {
+    width: 250px;
 }
