@@ -47,3 +47,21 @@ h1 {
 .portraits img {
     width: 250px;
 }
+
+#faq {
+    margin-top: 30px;
+}
+
+#faq .question {
+    font-size: 18px;
+    margin-top: 24px;
+    font-weight: bold;
+}
+
+#faq .answer {
+    font-size: 16px;
+}
+
+#faq pre {
+    margin-top: 10px;
+}

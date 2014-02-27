@@ -1,0 +1,34 @@
+---
+layout: page
+title: Maxel FAQ
+active: FAQ
+---
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="container section" id="faq">
+  <h1>FAQ</h1>
+  <p class="lead">Here's where I can answer common questions. If you have a question that's not on this list, you can ping me on twitter: <a href="https://twitter.com/maxelapp">@maxelapp</a>.
+
+  <h1>Questions</h1>
+  <div class="question">I'm not seeing my download speed improve?</div>
+  <div class="answer">Maxel will only increase your speeds up to the bandwidth of your computer's connection. So if you have a 3 Mbps cable connection, that's the fastest you'll go. But in this case, Maxel will help if the server you're downloading from will only give you 300 kbps&mdash;just crank up the threads to 10, and you should get about 3 Mbps.</div>
+  <div class="question">Maxel freezes when I use more than 64 connections?</div>
+  <div class="answer">Most Macs have a threading limit. I'll be optimizing Maxel in later releases to circumvent this limit.</div>
+  <div class="question">Why does my SFTP download fail with > 10 connections?</div>
+  <div class="answer">The error message is: "Failure establishing SSH session. You may have too many connections..." The SSH server probably defaults to a maximum of 10 connections. To increase it, modify sshd_config (usually /etc/sshd/sshd_config) and delete the line if it exists:<br>
+  <pre>MaxStartups 10:30:60</pre><br>
+  Add the line<br>
+  <pre>MaxStartups 100:30:160</pre><br>
+  This will allow you to establish up to 100 connections simultaneously.
+  </div>
+
+  <hr/>
+
+  <div class="container" id="calltoaction">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <a class="btn btn-primary btn-lg btn-block" href="{{page.mxdownload}}">Download Beta</a>
+      </div>
+    </div>
+  </div>
+</div>
