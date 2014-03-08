@@ -39,6 +39,10 @@ h1 {
     font-size: 18px;
 }
 
+.section {
+    font-size: 18px;
+}
+
 .portraits {
     text-align: center;
     margin-bottom: 40px;
@@ -59,7 +63,7 @@ h1 {
 }
 
 #faq .answer {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #faq pre {
